@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link rel="stylesheet" href="css/question.css">
+
+<title>Project</title>
+</head>
+
+<body>
+<div>
+<div>
+<h1>
+<span>Project: Multiple Console Shapes in a Row </span>
+</h1>
+
+<p><span>Please read <a href='ReadMe.html'> important information</a> first. </span>
+
+</p>
+
+<h2 ><span>Description</span></h2>
+
+
+<p><span>You are expected to display different shapes side by side as given in the following example:</span>
+
+<pre>
+----------------------------------------
+                          *     
+            *    ****    ***    
+           ***   ****   *****   
+          *****  ****  *******  
+         ******* **** ********* 
+          *****           *        
+          *****          ***       
+          *****         *****      
+                     
+----------------------------------------
+*** ***************                      
+ *   *************        *              
+      ***********        ***             
+       *********        *****         ** 
+        *******        *******        ** 
+         *****        *********   *** ** 
+          ***        ***********  *** ** 
+           *        ************* *** ** 
+----------------------------------------</pre>
+
+The input required for this output is:
+<pre>
+T4,S4,DL,DL,T5,N,E1x4,R3x5,E1x7,T3,E1x4,N,B,N,DL,V3,V15,T7,S3,R5x2
+</pre>
+where
+<ul>
+<li>T4 is a triangle of height 4</li>
+<li>S4 is a square of height 4</li>
+<li>R3x5 is a rectangle of height 3 and width 5</li>
+<li>E1x4 is an empty rectangular area of height 1 and width 4</li>
+<li>V3 is an inverted triangle of width 3</li>
+<li>DL means draw a line of dashes</li>
+<li>N means move to the next row of shapes</li>
+<li>B means blank line</li>
+</ul>
+</p>
+
+<table>
+
+<tr>
+<th> Row</th> <th>Output</th>
+</tr>
+
+
+<tr>
+<td>1</td><td><pre>
+----------------------------------------
+                          *     
+            *    ****    ***    
+           ***   ****   *****   
+          *****  ****  *******  
+         ******* **** ********* </pre></td>
+</tr><tr>
+<td>2</td><td><pre>
+          *****           *        
+          *****          ***       
+          *****         *****      </pre></td>
+</tr><tr>
+<td>3</td><td><pre>                     </pre></td>
+</tr><tr>
+<td>4</td><td><pre>
+----------------------------------------
+*** ***************                      
+ *   *************        *              
+      ***********        ***             
+       *********        *****         ** 
+        *******        *******        ** 
+         *****        *********   *** ** 
+          ***        ***********  *** ** 
+           *        ************* *** ** </pre></td>
+</tr>
+
+<tr>
+<td>Final Line</td><td><pre>
+----------------------------------------</pre></td>
+</tr></table>
+
+<hr>
+
+The guidelines are as follows:
+
+<ul>
+<li>You can call the split(",N,") and split(",") methods to obtain the shapes of each row from the input</li>
+<li>You can use <code>startswith("T")</code> for a conditional check to decide if the shape is a triangle</li>
+<li>Each shape in the same row are separated by a single space</li>
+<li>All rows are aligned to the center with respect to the widest row</li>
+<li>All shapes except the inverted triangles are displayed on the same baseline</li>
+<li>Inverted triangles are like bats, they are displayed as if they are hanging down from the ceiling of the row </li>
+<li>Existence of at least one DL is sufficient for drawing a single dashed line of maximum row width before the row itself. Any other DLs in the row will be ignored, (hint: <code>in</code> keyword may be useful here, as well as the <code>remove</code> method of the list). </li>
+<li>Remove all 'N' symbols of a row obtained with split(",N,"), as you did with redundant the "DL"s in the same row.</li>
+<li>The inputs <code>V11,DL</code> , <code>DL,V11</code> , and <code> DL,V11,DL</code> must generate the same output.</li>
+<li>You will end your output with a single dashed line of maximum row width.</li>
+<li>You may use the <code>replace</code> method of strings or the slicing operator to find out the size of the shapes</li>
+<li>Row height is the height of the tallest shape in that row</li>
+<li>You may need to use <code>if-elif-else</code> and <code>for</code> loops extensively</li>
+<li>You may consider writing functions to obtain the height and width of each shape type or to calculate row height and row width	</li>
+<li>You will have to display each line of the output individually, consisting of an offset value, blanks, and corresponding line of each shape on that specific line of the row. Once you move to the next line, you cannot go back up.</li>
+<li>T uses height, V uses width</li>
+<li>E is similar to R but it uses space instead of asterisks</li>
+<li>
+<p>
+Also use O1 (capital letter O, not zero) as an offset shape to insert additional spaces before the following shapes in a row, such as:
+</p>
+<p>
+<pre>
+T4,DL,R2x3,DL,N,N,O1,V5,T3
+-------------
+    *        
+   ***       
+  *****  *** 
+ ******* *** 
+  *****   *   
+   ***   ***  
+    *   ***** 
+-------------
+</pre>
+</p>
+<p>
+<pre>
+and T4,DL,R2x3,DL,O2,N,N,O1,V5,O2,T3
+----------------
+    *           
+   ***          
+  *****  ***    
+ ******* ***    
+  *****      *   
+   ***      ***  
+    *      ***** 
+----------------
+</pre>
+</p>
+<p>
+O2 at the end of the first row adds extra space to the first row.
+</p>
+<p>
+
+O0 (letter O followed by zero) is also a valid offset making use of the single space between the two shapes in a row. 
+</p>
+
+</li>
+
+<li>
+
+B symbol does not automatically jump to the new line: 
+<pre>
+N,T3,N,B,N,T3
+  *   
+ ***  
+***** 
+   
+  *   
+ ***  
+***** 
+-----
+</pre>
+
+</li>
+<li>Keep practicing the course content before the class and take a quick look at each chapter</li>
+<li>Do not use any imports, they will be removed by the grading system.</li>
+</ul>
+
+
+
+
+
+
+
+
+<hr>
+The rules are as follows:
+<ul>
+<li>Submit your code before the deadline</li>
+<li>Do not panic, the project requires topics we will cover in the following weeks, try finding out the solution strategy first, it takes far less time to implement than you might think. </li>
+<li>Do not post this project anywhere online/offline or send it to other people, that is against many rules and regulations, we mean it.</li>
+<li>Do not submit code that does not belong to you, you will be asked to defend your work line by line before the final exam. </li>
+<li>You may discuss the solutions with your friends but you cannot share your code with them or copy-paste-modify-rewrite and submit code developed by ANY other person. </li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<table>
+
+<tr>
+<th>Input</th> <th>Output</th>
+</tr>
+
+<tr>
+<td>S3,T5</td><td><pre>
+        *     
+       ***    
+***   *****   
+***  *******  
+*** ********* 
+-------------</pre></td>
+</tr>
+
+
+<tr>
+<td>E1x3,R2x5,E1x6,T4</td><td><pre>
+                    *    
+                   ***   
+    *****         *****  
+    *****        ******* 
+------------------------
+</pre></td>
+</tr>
+
+
+<tr>
+<td>T4,DL,R2x3,DL,N,N,O1,V5,T3</td><td><pre>
+-------------
+    *        
+   ***       
+  *****  *** 
+ ******* *** 
+  *****   *   
+   ***   ***  
+    *   ***** 
+-------------</pre></td>
+</tr>
+
+<tr>
+<td>T4,DL,R2x3,DL,O2,N,N,O1,V5,O2,T3</td><td><pre>
+----------------
+    *           
+   ***          
+  *****  ***    
+ ******* ***    
+  *****      *   
+   ***      ***  
+    *      ***** 
+----------------</pre></td>
+</tr>
+
+<tr>
+<td>DL,N,B,N,V7</td><td><pre>
+-------
+    
+******* 
+ *****  
+  ***   
+   *    
+-------</pre></td>
+</tr>
+
+
+
+
+
+</table>
+
+</body>
+</html>
